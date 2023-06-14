@@ -43,7 +43,7 @@ export const taskModule = {
     },
     actions: {
         fetchTasks(context) {
-            const tasks = TaskRestService.get();
+            const tasks = TaskRestService.get() ?? [];
             context.commit("FETCH_TASKS", tasks);
         },
         addTask(context, task) {
