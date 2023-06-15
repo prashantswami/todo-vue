@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>To Do List</h1>
+        <h1>To Do List 1</h1>
         <input type="text" name="add-task" class="form-control add-task" 
         v-model="newTask.name" 
         placeholder="Please add new task"

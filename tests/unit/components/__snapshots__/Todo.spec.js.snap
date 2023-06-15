@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToDo.vue renders component 1`] = `
+<div>
+  <h1>To Do List 1</h1> <input type="text" name="add-task" placeholder="Please add new task" class="form-control add-task">
+  <div class="list">
+    <div class="list-item"><span class="">task 1</span> <span class="remove">×</span></div>
+  </div>
+  <h4>Completed Tasks</h4>
+  <div class="list"></div>
+</div>
+`;
