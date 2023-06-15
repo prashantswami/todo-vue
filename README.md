@@ -1,4 +1,6 @@
-# todojs
+[![default checks](https://github.com/prashantswami/todo-vue/actions/workflows/default.yml/badge.svg)](https://github.com/prashantswami/todo-vue/actions/workflows/default.yml)
+
+# TodoVue
 
 ## Project setup
 ```
