@@ -2,11 +2,22 @@
 
 exports[`ToDo.vue renders component 1`] = `
 <div>
-  <h1>To Do List 1</h1> <input type="text" name="add-task" placeholder="Please add new task" class="form-control add-task">
+  <styledbutton-stub>
+    Show Modal
+  </styledbutton-stub>
+  <h1>
+    To do List
+  </h1> <input type="text" name="add-task" placeholder="Please add new task" class="form-control add-task">
   <div class="list">
     <div class="list-item"><span class="">task 1</span> <span class="remove">×</span></div>
   </div>
   <h4>Completed Tasks</h4>
   <div class="list"></div>
+  <commonmodal-stub>
+    Hello
+
+    body
+    <div class="footer">footer</div>
+  </commonmodal-stub>
 </div>
 `;

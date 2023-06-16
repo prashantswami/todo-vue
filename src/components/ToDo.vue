@@ -1,6 +1,12 @@
 <template>
-    <div>
-        <h1>To Do List 1</h1>
+    <div> 
+        <StyledButton @click="openModal"> 
+            Show Modal
+        </StyledButton> 
+
+        <h1>
+            To do List
+        </h1>
         <input type="text" name="add-task" class="form-control add-task" 
         v-model="newTask.name" 
         placeholder="Please add new task"
@@ -18,63 +24,87 @@
                 <span class="remove" @click="removeTask(task.taskId)">&times;</span>
             </div>
         </div>
+
+
+        <CommonModal v-model="showModal" > 
+            <template v-slot:title>
+                Hello
+            </template>
+
+            <template v-slot:body>
+                body
+            </template>
+
+            <template v-slot:footer>
+                <div class="footer">footer</div>
+            </template>
+        </CommonModal>
     </div>
 </template>
 <script>
 import {mapState, mapActions, mapGetters} from 'vuex';
+import StyledButton from './StyledButton.vue';
+import CommonModal from './CommonModal.vue';
+
 export default {
-    name: 'to-do',
+    name: "to-do",
     computed: {
         ...mapGetters({
-            completedTasks: 'task/completeTasks',
-            incompleteTasks: 'task/incompleteTasks'
+            completedTasks: "task/completeTasks",
+            incompleteTasks: "task/incompleteTasks"
         }),
         ...mapState({
             tasks: state => state.task.tasks
         })
     },
+    components: {
+        StyledButton,
+        CommonModal
+    },
     data() {
         return {
             newTask: {
-                name: '',
+                name: "",
                 isCompleted: false,
             },
             latestTaskId: 0,
-        }
+            showModal: false,
+        };
     },
     mounted() {
-       this.$fetchTasks();
+        this.$fetchTasks();
     },
     methods: {
         ...mapActions({
-            $fetchTasks: 'task/fetchTasks',
-            $addTask: 'task/addTask',
-            $removeTask: 'task/removeTask',
-            $clearAllTasks: 'task/clearAllTasks',
-            $updateTask: 'task/updateTask',
+            $fetchTasks: "task/fetchTasks",
+            $addTask: "task/addTask",
+            $removeTask: "task/removeTask",
+            $clearAllTasks: "task/clearAllTasks",
+            $updateTask: "task/updateTask",
         }),
         addTask() {
-            if(this.newTask.name==='') {
+            if (this.newTask.name === "") {
                 return;
             }
             this.latestTaskId = Math.random();
-            this.$addTask({...this.newTask, taskId: this.latestTaskId});
-            this.newTask.name = '';
+            this.$addTask({ ...this.newTask, taskId: this.latestTaskId });
+            this.newTask.name = "";
         },
-
         removeTask(taskId) {
             this.$removeTask(taskId);
         },
-
         completeTask(task) {
             task.isCompleted = !task.isCompleted;
             this.$updateTask(task);
         },
+        openModal() {
+            this.showModal = true;
+        }
     }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .list, input {
     font-size: 18px;
 }
@@ -106,5 +136,9 @@ export default {
 }
 .completed {
     text-decoration: line-through;
+}
+
+.footer {
+    padding: 15px;
 }
 </style>
